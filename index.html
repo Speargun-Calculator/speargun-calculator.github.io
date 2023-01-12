@@ -1,0 +1,648 @@
+<!-- HTML -->
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://unpkg.com/bulmaswatch/pulse/bulmaswatch.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow">
+<style>
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Barlow';
+		}
+
+	@media screen and (min-width: 769px), print .field-body {
+		display: flex;
+		flex-basis: 0;
+		flex-grow: 2.5;!important
+		}
+</style>
+</head>
+<body class="theme-page">
+<section class="section">
+	<div class="container content">
+		<h1>Speargun Setup Calculator</h1>
+		<p>Knowing your speargun's power capability is important for ensuring it's up to the task. Whether you're plugging pellagics or snooping snapper, you want piece of mind your shaft will penetrate and hold, landing you that once-in-a-lifetime fish.</p>
+		<p>In recent years spearos have been adopting roller and, to lesser extent, invert roller setups to improve their speargun's power. The obvious benifit to more power is the ability to and decrease barrel length, improving tracking in the water.</p>
+		<p>Although the power advantage of the roller speargun over a traditional railgun is well known anecdotally, it's a little harder to find quantitative data. Maybe the best resource to date has been Chris Coatesman's "Unrolling the Roller" article which documents his favoured setups. When it comes to invert roller spearguns there is no information available to my knowledge.</p>
+		<p>Don't get me wrong, there are good tutorials on how to setup an invert roller, but how does it compare numerically to a traditional rollergun? <b>That's why this calculator was made</b>.</p>
+		<p><b>The speargun setup calculator finds the force a roller speargun or invert roller speargun transfers into the shaft. Maybe more importantly, the calculator also allows you to compare the roller to a traditional speargun setup.</b> The default traditional setup is a twin 16mm band 1200mm speargun, as is the most common "one gun to rule them all" setup oft adopted here on the Sunshine Coast, Australia.</p>
+		<p>This calculator allows you to see if a roller head conversion is justifiable for your railgun. Or perhaps, why a double roller may be overkill for most use cases.</p>
+		<p>Please note that the calculator is theoretical, is not calibrated against empirical data and does not  account for energy losses such as friction losses or inefficiencies in the roller head.</p>
+	</div>
+</section>
+<section class="container content">
+	<div class="columns">
+		<!--------------------------
+		  --- STANDARD SPEARGUN SETUP
+		  -------------------------->
+		<div class="column">
+			<form class="has-background-info box">
+				<h2>Traditional Railgun Setup</h2>
+				<!-- BULMA FIELD SNIPPET
+				<div class="field is-horizontal">
+				  <div class="field-label ">
+					<label class="label">From</label>
+				  </div>
+				  <div class="field-body">
+					<div class="field is-expanded">
+					  <div class="field has-addons">
+						<p class="control is-expanded">
+						  <input class="input" type="tel" placeholder="Your phone number">
+						</p>
+						<p class="control">
+						  <a class="button is-static">
+							+44
+						  </a>
+						</p>
+					  </div>	
+					  <p class="help">Do not enter the first zero</p>
+					</div>
+				  </div>
+				</div>
+				 -->
+				<!-- BARREL LENGTH -->
+				<div class="field is-horizontal">
+				  <div class="field-label ">
+					<label class="label" for="BarrelLength">Barrel Length</label>
+				  </div>
+				  <div class="field-body">
+					<div class="field is-expanded">
+					  <div class="field has-addons">
+						<p class="control is-expanded">
+						  <input class="input" type="text" id="BarrelLength" value="1200" onchange="calculate()">
+						</p>
+						<p class="control">
+						  <a class="button is-static">
+							mm
+						  </a>
+						</p>
+					  </div>	
+					</div>
+				  </div>
+				</div>
+				<hr>
+				<!-- RUBBER DIA -->
+				<div class="field is-horizontal">
+				  <div class="field-label ">
+					<label class="label" for="BandDia">Rubber Diameter</label>
+				  </div>
+				  <div class="field-body">
+					<div class="field is-expanded">
+					  <div class="field has-addons">
+						<p class="control is-expanded">
+						  <input class="input" type="text" id="BandDia" value="16" onchange="calculate()">
+						</p>
+						<p class="control">
+						  <a class="button is-static">
+							mm
+						  </a>
+						</p>
+					  </div>	
+					</div>
+				  </div>
+				</div>
+				<!-- RUBBER BORE -->
+				<div class="field is-horizontal">
+				  <div class="field-label ">
+					<label class="label" for="BandBore">Rubber Bore Diameter</label>
+				  </div>
+				  <div class="field-body">
+					<div class="field is-expanded">
+					  <div class="field has-addons">
+						<p class="control is-expanded">
+						  <input class="input" type="text" id="BandBore" value="3" onchange="calculate()">
+						</p>
+						<p class="control">
+						  <a class="button is-static">
+							mm
+						  </a>
+						</p>
+					  </div>	
+					</div>
+				  </div>
+				</div>
+				<!-- BAND QTY -->
+				<div class="field is-horizontal">
+				  <div class="field-label ">
+					<label class="label" for="BandQty">Number of Bands</label>
+				  </div>
+				  <div class="field-body">
+					<div class="field is-expanded">
+					  <div class="field has-addons">
+						<p class="control is-expanded">
+						  <input class="input" type="text" id="BandQty" value="2" onchange="calculate()">
+						</p>
+					  </div>	
+					</div>
+				  </div>
+				</div>
+				<!-- BAND STRETCH -->
+				<div class="field is-horizontal">
+				  <div class="field-label ">
+					<label class="label" for="BandStretch">Band Stretch Factor</label>
+				  </div>
+				  <div class="field-body">
+					<div class="field is-expanded">
+					  <div class="field has-addons">
+						<p class="control is-expanded">
+						  <input class="input" type="text" id="BandStretch" value="3.7" onchange="calculate()">
+						</p>
+						<p class="control">
+						  <a class="button is-static">
+							times
+						  </a>
+						</p>
+					  </div>
+					  <p class="help"><b>(Choose a number greater than 1)</b>. eg. A band stretch factor of 2 means that the band is stretched to 2x times it's cut length when loaded to the notch.</p>
+					</div>
+				  </div>
+				</div>
+				<!-- BAND CALCULATIONS -->
+				<fieldset disabled class="has-background-info-dark has-text-light box">
+				    <h2>Results</h2>
+					<!-- STRETCH % -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="BandStretchPercent">Band Stretch Percent</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="BandStretchPercent">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								%
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">Calculates based on stretch factor, eg. 100% stretch is 2x unloaded length.</p>
+						</div>
+					  </div>
+					</div>
+					<!-- LENGTH -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="BandLength">Band Length</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="BandLength">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">The length of the rubber that you would cut to rig your speargun.</p>
+						</div>
+					  </div>
+					</div>
+					<!-- 1/2 LENGTH 
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="BandHalfLength">Band Half Length</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="BandHalfLength">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">Equals barrel length divided by the stretch factor.</p>
+						</div>
+					  </div>
+					</div> -->
+					<!-- ELASTIC MODULUS -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="BandModulus">Rubber Elastic Modulus</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="BandModulus">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								PSI
+							  </a>
+							</p>
+						  </div>	
+						  <p class="help">Taken for stretch at the notch. Data interporlated from pipeline industries band properties.</p>
+						</div>
+					  </div>
+					</div>
+				<!-- END BAND CALCULATIONS -->					
+				<!-- RESULTS -->
+				<div class="notification is-danger">
+					<p><b class="">Force: </b><span id="Result"></span> kg</p>
+				</div>
+				</fieldset>
+			</form>
+		</div>
+		<!-- END -- STANDARD SPEARGUN SETUP -->
+		<div class="column">
+			<div class="has-background-info box">
+				<!--------------------------
+				  --- STD ROLLERGUN SETUP
+				  -------------------------->
+				<h2>Rollergun Setup</h2>
+					<!-- ROLLER  BARREL LENGTH -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="RBarrelLength">Barrel Length</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="RBarrelLength" value="850" onchange="calculate()">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>	
+						</div>
+					  </div>
+					</div>
+					<hr>
+					<!-- RUBBER DIA -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="RBandDia">Rubber Diameter</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="RBandDia" value="16" onchange="calculate()">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>	
+						</div>
+					  </div>
+					</div>
+					<!-- RUBBER BORE -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="RBandBore">Rubber Bore Diameter</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="RBandBore" value="3" onchange="calculate()">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>	
+						</div>
+					  </div>
+					</div>
+					<!-- ROLLER BAND QTY -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="RBandQty">Number of Bands</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="RBandQty" value="2" onchange="calculate()">
+							</p>
+						  </div>	
+						</div>
+						<p class="help">Each band is made up of 2 pieces of rubber.</p>
+					  </div>
+					</div>
+					<!-- ROLLER BAND STRETCH -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="RBandStretch">Band total Stretch Factor</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="RBandStretch" value="4" onchange="calculate()">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								times
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">Choose a number greater than 1 and greater than pretension. A band stretch factor of 2 means that the band is stretched to 2x times it's cut length when loaded to the notch.</p>
+						</div>
+					  </div>
+					</div>
+					<!-- ROLLER BAND PRETENSION -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="RBandPretension">Band pretension Stretch Factor</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="RBandPretension" value="2" onchange="calculate()">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								times
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">Choose a number 1 or greater. For no pretension, enter "1".</p>
+						</div>
+					  </div>
+					</div>
+					<!-- ROLLER BAND CALCULATIONS -->
+					<fieldset disabled class="has-background-info-dark has-text-light box">
+						<h2>Results</h2>
+						<!-- ROLLER BAND STRETCH % -->
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="RBandStretchPercent">Band total stretch (percent)</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="RBandStretchPercent">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									%
+								  </a>
+								</p>
+							  </div>
+							  <p class="help">Calculates based on stretch factor, eg. 100% stretch is 2x unloaded length.</p>
+							</div>
+						  </div>
+						</div>
+						<!-- ROLLER PRETENSION % -->
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="RBandPretensionPercent">Band pretension (percent)</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="RBandPretensionPercent">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									%
+								  </a>
+								</p>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						<!-- ELASTIC MODULUS --
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="RBandModulus">Rubber Elastic Modulus</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="RBandModulus">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									PSI
+								  </a>
+								</p>
+							  </div>	
+							</div>
+						  </div>
+						</div> -->
+						<h2>Rollergun bands</h2>
+						<!-- ROLLER BAND LENGTH -->
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="RBandLength">Band Length</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="RBandLength">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									mm
+								  </a>
+								</p>
+							  </div>
+							  <p class="help">The length of the rubber to rig your speargun based off input "Band Stretch Factor".</p>
+							</div>
+						  </div>
+						</div>
+						<!-- ROLLER BAND 1/2 LENGTH -->
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="RBandHalfLength">Band Piece Length</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="RBandHalfLength">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									mm
+								  </a>
+								</p>
+							  </div>
+							  <p class="help">Each band is made up of 2 pieces.</p>
+							</div>
+						  </div>
+						</div>
+						
+					<!-- END BAND CALCULATIONS -->
+					<div class="notification is-danger">
+						<p><b class="">Force: </b><span id="RResult"></span> kg</p>
+					</div>
+					<!--------------------------
+					  --- INVERT ROLLERGUN CALCS
+					  -------------------------->
+						<h2>Invert Rollergun bands</h2>
+						<!-- ROLLER BAND LENGTH -->
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="IRBandLength">Band Length</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="IRBandLength">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									mm
+								  </a>
+								</p>
+							  </div>
+							  <p class="help">The length of the rubber to rig your speargun based off input "Band Stretch Factor".</p>
+							</div>
+						  </div>
+						</div>
+						<!-- ROLLER BAND 1/2 LENGTH -->
+						<div class="field is-horizontal">
+						  <div class="field-label ">
+							<label class="label" for="IRBandHalfLength">Band Piece Length</label>
+						  </div>
+						  <div class="field-body">
+							<div class="field is-expanded">
+							  <div class="field has-addons">
+								<p class="control is-expanded">
+								  <input class="input" type="text" id="IRBandHalfLength">
+								</p>
+								<p class="control">
+								  <a class="button is-static">
+									mm
+								  </a>
+								</p>
+							  </div>
+							  <p class="help">Each band is made up of 2 pieces.</p>
+							</div>
+						  </div>
+						</div>
+
+					<!-- END BAND CALCULATIONS -->
+					<div class="notification is-danger">
+						<p><b class="">Force: </b><span id="IRResult"></span> kg</p>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- END -- ROLLER SPEARGUN SETUP -->
+	</div>
+</section>
+
+
+
+</body>
+<script>
+function calculate() {
+  //  ********************
+  //  ** STANDARD SETUP **
+  //  ********************
+  // Variables
+  var BarrelLength = document.getElementById("BarrelLength").value;
+  var BandQty = document.getElementById("BandQty").value;
+  var BandStretch = document.getElementById("BandStretch").value;
+  var BandDia = document.getElementById("BandDia").value;
+  var BandBore = document.getElementById("BandBore").value;
+  //var BandModulus = document.getElementById("BandModulus").value;
+  
+  // Calculations
+  var BandHalfLength = (BarrelLength/BandStretch);
+  var BandLength = Math.round(BandHalfLength*2);
+  var BandStretchPercent = (BandStretch-1)*100;
+  var BandModulus = (0.45*BandStretchPercent) + 75;
+  var BandModulusZeroStretch = 75;
+  var RubberArea = 3.145*((BandDia**2)-(BandBore**2))/4;
+  var PSIconversion = 0.000703058390181755;
+  var Force = 1/2*(2*BandQty*RubberArea*PSIconversion)*(BarrelLength-BandHalfLength)*(1/2*(BandModulus-BandModulusZeroStretch)+BandModulusZeroStretch)/1000;
+  var Result = Math.round(Force*10)/10;
+  
+  // Results
+  //document.getElementById("BandHalfLength").value = BandHalfLength;
+  document.getElementById("BandLength").value = BandLength;
+  document.getElementById("BandStretchPercent").value = BandStretchPercent;
+  document.getElementById("Result").innerHTML = Result;
+  document.getElementById("BandModulus").value = BandModulus;
+  
+  //  ******************
+  //  ** ROLLER SETUP **
+  //  ******************
+
+  // STANDARD ROLLER - Variables
+  var RBarrelLength = document.getElementById("RBarrelLength").value;
+  var RBandQty = document.getElementById("RBandQty").value;
+  var RBandStretch = document.getElementById("RBandStretch").value;
+  var RBandPretension = document.getElementById("RBandPretension").value;
+  var RBandDia = document.getElementById("RBandDia").value;
+  var RBandBore = document.getElementById("RBandBore").value;
+  
+  // Band Calculations
+  var RBandHalfLength = Number(RBarrelLength/2);
+  var RBandStretchPercent = Number((RBandStretch-1)*100);
+  var RBandPretensionPercent = Number((RBandPretension-1)*100);
+  var RBandModulus = (0.45*RBandStretchPercent) + 75;
+  var RBandPretensionModulus = (0.45*RBandPretensionPercent) + 75;
+  
+  
+  // Roller Pretension
+  if ( RBandPretension = 1){
+		var RBandLength = RBarrelLength;
+  }
+  else {
+		var RBandLength = Number(RBarrelLength/(RBandStretch-RBandPretension));
+  }
+  
+  
+  // STANDARD ROLLER - Calculations
+  var RRubberArea = Number(3.145*(RBandDia**2-RBandBore**2)/4);
+  
+  var RForce = Number((2*RBarrelLength*RBandQty*RRubberArea*PSIconversion)*((1/2*(RBandModulus-RBandPretensionModulus)+RBandPretensionModulus))/1000);
+  var RForceResult = Number(Math.round(RForce*10)/10);
+  var RForceInvert = RForce/2;
+  var RForceInvertResult = Number(Math.round(RForceInvert*10)/10);
+ 
+ 
+  // INVERT ROLLER - Calculations
+  var IRBandHalfLength = Math.round(RBarrelLength/RBandStretch);
+  var IRBandLength = IRBandHalfLength*2;
+  
+  // ROLLER RESULTS
+  document.getElementById("RBandStretchPercent").value = RBandStretchPercent;
+  document.getElementById("RBandPretensionPercent").value = RBandPretensionPercent;
+
+  // ROLLER SETUP
+  document.getElementById("RBandHalfLength").value = RBandHalfLength;
+  document.getElementById("RBandLength").value = RBandLength;
+  // INVERT ROLLER SETUP
+  document.getElementById("IRBandHalfLength").value = IRBandHalfLength;
+  document.getElementById("IRBandLength").value = IRBandLength;
+  
+  //document.getElementById("RResult").innerHTML = RForceResult;
+  document.getElementById("RResult").innerHTML = RForceResult;
+  document.getElementById("IRResult").innerHTML = RForceInvertResult;
+
+
+  
+}
+calculate();
+</script>
+
+
+
+
