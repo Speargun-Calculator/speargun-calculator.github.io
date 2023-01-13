@@ -1,41 +1,86 @@
-<!-- HTML -->
+<!DOCTYPE html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-<link rel="stylesheet" href="https://unpkg.com/bulmaswatch/pulse/bulmaswatch.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speargun Calculator</title>
+<link rel="stylesheet" href="https://unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow">
 <style>
+
+
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Barlow';
 		}
-
-	@media screen and (min-width: 769px), print .field-body {
-		display: flex;
-		flex-basis: 0;
-		flex-grow: 2.5;!important
+	.title{
+		color: #fff;
+	}
+	#toc_container {
+		//background: #f9f9f9 none repeat scroll 0 0;
+		border: 1px solid #aaa;
+		display: table;
+		font-size: 85%;
+		padding: 1em;
+		width: auto;
+		border-radius: 6px;
 		}
+		.toc_title {
+			font-weight: 700;
+			text-align: center;
+			}
+		#toc_container li, #toc_container ul, #toc_container ul li{
+			list-style: outside none none !important;
+			}
+	.has-text-light label {color: #fff}
+	.has-text-light .heading { color: #1abc9c!important; }
 </style>
 </head>
-<body class="theme-page">
+<body>
+<header class="section has-background-primary">
+	<div class="container">
+		<h1 class="title">Speargun Setup Calculator</h1>
+	</div>
+</header>
 <section class="section">
 	<div class="container content">
-		<h1>Speargun Setup Calculator</h1>
+<div class="notification is-link" id="toggle">
+  <button class="delete" onclick="toggle()" id="toggleButton"></button>
+  Go ahead and <a href="#calculator">skip to the numbers</a>
+</div>
+<div id="toc_container">
+<p class="toc_title">Contents</p>
+<ul class="toc_list">
+<li><a href="#1">01. Background</a>
+<li><a href="#2">02. How it works</a>
+<li><a href="#3">03. Presets</a>
+<li><a href="#calculator"><b>04. Calculator</b></a>
+<li>0.5 FAQ (coming soon)
+</ul>
+</div>
+</section>
+<section class="section">
+	<div class="container content">
+		<h2 id="1">Background</h2>
 		<p>Knowing your speargun's power capability is important for ensuring it's up to the task. Whether you're plugging pellagics or snooping snapper, you want piece of mind your shaft will penetrate and hold, landing you that once-in-a-lifetime fish.</p>
-		<p>In recent years spearos have been adopting roller and, to lesser extent, invert roller setups to improve their speargun's power. The obvious benifit to more power is the ability to and decrease barrel length, improving tracking in the water.</p>
-		<p>Although the power advantage of the roller speargun over a traditional railgun is well known anecdotally, it's a little harder to find quantitative data. Maybe the best resource to date has been Chris Coatesman's "Unrolling the Roller" article which documents his favoured setups. When it comes to invert roller spearguns there is no information available to my knowledge.</p>
-		<p>Don't get me wrong, there are good tutorials on how to setup an invert roller, but how does it compare numerically to a traditional rollergun? <b>That's why this calculator was made</b>.</p>
-		<p><b>The speargun setup calculator finds the force a roller speargun or invert roller speargun transfers into the shaft. Maybe more importantly, the calculator also allows you to compare the roller to a traditional speargun setup.</b> The default traditional setup is a twin 16mm band 1200mm speargun, as is the most common "one gun to rule them all" setup oft adopted here on the Sunshine Coast, Australia.</p>
-		<p>This calculator allows you to see if a roller head conversion is justifiable for your railgun. Or perhaps, why a double roller may be overkill for most use cases.</p>
+		<p>In recent years spearos have been adopting roller and, to lesser extent, invert rollers to acheive greater power. The obvious benifit to more power is the ability to and decrease barrel length, improving tracking in the water.</p>
+		<p>Although the power advantage of the roller speargun over a traditional railgun is well known anecdotally, it's a little harder to find quantitative data. Maybe the best resource to date has been Chris Coatesman's <a href="http://spearguns.blogspot.com/2016/02/unrolling-roller-rollergun-test-and.html">Unrolling the Roller</a> article which documents his favoured setups. When it comes to invert roller spearguns there is no information available to my knowledge.</p>
+		<p>Don't get me wrong, there are good tutorials on how to setup an invert roller, but how does the power compare to a traditional rollergun? <b>That's why I made this calculator</b>.</p>
+		<h2 id="2">How it works</h2>
+		<p>The speargun setup calculator finds the force a roller speargun or invert roller speargun transfers into the shaft. Maybe more importantly, the calculator also allows you to compare the roller to a traditional speargun setup. This calculator allows you to see if a roller head conversion is justifiable for your railgun. Or perhaps, why a double roller may be overkill for most use cases.</p>
+		<p>Make sure you enter your setup in the right section, because the formulas are different for each setup type.</p>
 		<p>Please note that the calculator is theoretical, is not calibrated against empirical data and does not  account for energy losses such as friction losses or inefficiencies in the roller head.</p>
+		<h2 id="3">Presets</h2>
+		<p>The default traditional setup is a twin 16mm band 1200mm speargun, as is the most common "one gun to rule them all" setup often chosen by spearos here on the Sunshine Coast, Australia.</p>
 	</div>
 </section>
-<section class="container content">
+<section class="section" id="calculator">
+    <div class="container content">
 	<div class="columns">
 		<!--------------------------
 		  --- STANDARD SPEARGUN SETUP
 		  -------------------------->
 		<div class="column">
-			<form class="has-background-info box">
-				<h2>Traditional Railgun Setup</h2>
+			<form class="has-background-primary has-text-light box">
+				<h2 class="heading">Traditional Railgun Setup</h2>
 				<!-- BULMA FIELD SNIPPET
 				<div class="field is-horizontal">
 				  <div class="field-label ">
@@ -115,7 +160,8 @@
 							mm
 						  </a>
 						</p>
-					  </div>	
+					  </div>
+					  <p class="help">Standard bore is 3mm. Microbore is usually 1.5mm.</p>
 					</div>
 				  </div>
 				</div>
@@ -156,7 +202,7 @@
 				  </div>
 				</div>
 				<!-- BAND CALCULATIONS -->
-				<fieldset disabled class="has-background-info-dark has-text-light box">
+				<fieldset disabled class="has-background-link has-text-light box">
 				    <h2>Results</h2>
 					<!-- STRETCH % -->
 					<div class="field is-horizontal">
@@ -252,11 +298,12 @@
 		</div>
 		<!-- END -- STANDARD SPEARGUN SETUP -->
 		<div class="column">
-			<div class="has-background-info box">
+			<div class="has-background-primary has-text-light box">
 				<!--------------------------
 				  --- STD ROLLERGUN SETUP
 				  -------------------------->
-				<h2>Rollergun Setup</h2>
+				<form>
+				<h2 class="heading">Rollergun Setup</h2>
 					<!-- ROLLER  BARREL LENGTH -->
 					<div class="field is-horizontal">
 					  <div class="field-label ">
@@ -314,7 +361,9 @@
 								mm
 							  </a>
 							</p>
-						  </div>	
+
+						  </div>
+						  <p class="help">Standard bore is 3mm. Microbore is usually 1.5mm.</p>
 						</div>
 					  </div>
 					</div>
@@ -377,7 +426,7 @@
 					  </div>
 					</div>
 					<!-- ROLLER BAND CALCULATIONS -->
-					<fieldset disabled class="has-background-info-dark has-text-light box">
+					<fieldset disabled class="has-background-link has-text-light box">
 						<h2>Results</h2>
 						<!-- ROLLER BAND STRETCH % -->
 						<div class="field is-horizontal">
@@ -491,7 +540,7 @@
 					<!--------------------------
 					  --- INVERT ROLLERGUN CALCS
 					  -------------------------->
-						<h2>Invert Rollergun bands</h2>
+						<h2 class="heading">Invert Rollergun bands</h2>
 						<!-- ROLLER BAND LENGTH -->
 						<div class="field is-horizontal">
 						  <div class="field-label ">
@@ -544,12 +593,20 @@
 		</div>
 		<!-- END -- ROLLER SPEARGUN SETUP -->
 	</div>
+	</div>
 </section>
-
 
 
 </body>
 <script>
+const targetDiv = document.getElementById("toggle");
+function toggle() {
+  if (targetDiv.style.display !== "none") {
+    targetDiv.style.display = "none";
+  } else {
+    targetDiv.style.display = "block";
+  }
+};
 function calculate() {
   //  ********************
   //  ** STANDARD SETUP **
@@ -642,7 +699,3 @@ function calculate() {
 }
 calculate();
 </script>
-
-
-
-
