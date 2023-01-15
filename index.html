@@ -61,11 +61,12 @@
 	<div class="container content">
 		<h2 id="1">Background</h2>
 		<p>Knowing your speargun's power capability is important for ensuring it's up to the task. Whether you're plugging pellagics or snooping snapper, you want piece of mind your shaft will penetrate and hold, landing you that once-in-a-lifetime fish.</p>
-		<p>In recent years spearos have been adopting roller and, to lesser extent, invert rollers to acheive greater power. The obvious benifit to more power is the ability to and decrease barrel length, improving tracking in the water.</p>
+		<p>In recent years spearos have been adopting roller and, to lesser extent, invert rollers to acheive greater power. The obvious benefit to more power is the ability to decrease barrel length, improving tracking in the water.</p>
 		<p>Although the power advantage of the roller speargun over a traditional railgun is well known anecdotally, it's a little harder to find quantitative data. Maybe the best resource to date has been Chris Coatesman's <a href="http://spearguns.blogspot.com/2016/02/unrolling-roller-rollergun-test-and.html">Unrolling the Roller</a> article which documents his favoured setups. When it comes to invert roller spearguns there is no information available to my knowledge.</p>
 		<p>Don't get me wrong, there are good tutorials on how to setup an invert roller, but how does the power compare to a traditional rollergun? <b>That's why I made this calculator</b>.</p>
 		<h2 id="2">How it works</h2>
-		<p>The speargun setup calculator finds the force a roller speargun or invert roller speargun transfers into the shaft. Maybe more importantly, the calculator also allows you to compare the roller to a traditional speargun setup. This calculator allows you to see if a roller head conversion is justifiable for your railgun. Or perhaps, why a double roller may be overkill for most use cases.</p>
+		<p>The speargun setup calculator finds the force a roller speargun or invert roller speargun transfers into the shaft. Maybe more importantly, the calculator also allows you to compare the roller to a traditional speargun setup. This allows you to see if a roller head conversion is justifiable for your railgun.</p>
+		<h3>Using the Calculator</h3>
 		<p>Make sure you enter your setup in the right section, because the formulas are different for each setup type.</p>
 		<p>Please note that the calculator is theoretical, is not calibrated against empirical data and does not  account for energy losses such as friction losses or inefficiencies in the roller head.</p>
 		<h2 id="3">Presets</h2>
@@ -81,6 +82,7 @@
 		<div class="column">
 			<form class="has-background-primary has-text-light box">
 				<h2 class="heading">Traditional Railgun Setup</h2>
+				<p>Use this form if calculating the <strong class="has-text-link">band length</strong> and <strong class="has-text-link">power</strong> of a standard railgun. </p>
 				<!-- BULMA FIELD SNIPPET
 				<div class="field is-horizontal">
 				  <div class="field-label ">
@@ -198,16 +200,17 @@
 						</p>
 					  </div>
 					  <p class="help"><b>(Choose a number greater than 1)</b>. eg. A band stretch factor of 2 means that the band is stretched to 2x times it's cut length when loaded to the notch.</p>
+					  <p class="help">Stretch factor typically 2.75 - 3.25, depending on preferences. Daniel Mann uses 2.7 <a href="https://www.youtube.com/watch?v=yDIGtVYL6MQ">in this video</a> and Rob Allen uses 3 for <a href="https://roballendiving.com/product/replacement-bands-rob-allen-tuna-railgins/">premade bands</a>. Band stretch factor may need to be lower for larger diameter bands, or higher if using a 14mm band.</p>
 					</div>
 				  </div>
 				</div>
 				<!-- BAND CALCULATIONS -->
-				<fieldset disabled class="has-background-link has-text-light box">
+				<fieldset disabled class="has-background-info has-text-light box">
 				    <h2>Results</h2>
 					<!-- STRETCH % -->
 					<div class="field is-horizontal">
 					  <div class="field-label ">
-						<label class="label" for="BandStretchPercent">Band Stretch Percent</label>
+						<label class="label" for="BandStretchPercent">Band Stretch (percent)</label>
 					  </div>
 					  <div class="field-body">
 						<div class="field is-expanded">
@@ -225,48 +228,6 @@
 						</div>
 					  </div>
 					</div>
-					<!-- LENGTH -->
-					<div class="field is-horizontal">
-					  <div class="field-label ">
-						<label class="label" for="BandLength">Band Length</label>
-					  </div>
-					  <div class="field-body">
-						<div class="field is-expanded">
-						  <div class="field has-addons">
-							<p class="control is-expanded">
-							  <input class="input" type="text" id="BandLength">
-							</p>
-							<p class="control">
-							  <a class="button is-static">
-								mm
-							  </a>
-							</p>
-						  </div>
-						  <p class="help">The length of the rubber that you would cut to rig your speargun.</p>
-						</div>
-					  </div>
-					</div>
-					<!-- 1/2 LENGTH 
-					<div class="field is-horizontal">
-					  <div class="field-label ">
-						<label class="label" for="BandHalfLength">Band Half Length</label>
-					  </div>
-					  <div class="field-body">
-						<div class="field is-expanded">
-						  <div class="field has-addons">
-							<p class="control is-expanded">
-							  <input class="input" type="text" id="BandHalfLength">
-							</p>
-							<p class="control">
-							  <a class="button is-static">
-								mm
-							  </a>
-							</p>
-						  </div>
-						  <p class="help">Equals barrel length divided by the stretch factor.</p>
-						</div>
-					  </div>
-					</div> -->
 					<!-- ELASTIC MODULUS -->
 					<div class="field is-horizontal">
 					  <div class="field-label ">
@@ -288,6 +249,51 @@
 						</div>
 					  </div>
 					</div>
+				</fieldset>
+				<fieldset disabled class="has-background-link has-text-light box">
+					<h2>Speargun band result</h2>
+					<!-- 1/2 LENGTH 
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="BandHalfLength">Band Half Length</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="BandHalfLength">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">Equals barrel length divided by the stretch factor.</p>
+						</div>
+					  </div>
+					</div> -->
+					<!-- LENGTH -->
+					<div class="field is-horizontal">
+					  <div class="field-label ">
+						<label class="label" for="BandLength">Band Length</label>
+					  </div>
+					  <div class="field-body">
+						<div class="field is-expanded">
+						  <div class="field has-addons">
+							<p class="control is-expanded">
+							  <input class="input" type="text" id="BandLength">
+							</p>
+							<p class="control">
+							  <a class="button is-static">
+								mm
+							  </a>
+							</p>
+						  </div>
+						  <p class="help">The length of the rubber that you would cut to rig your speargun.</p>
+						</div>
+					  </div>
+					</div>
 				<!-- END BAND CALCULATIONS -->					
 				<!-- RESULTS -->
 				<div class="notification is-danger">
@@ -304,6 +310,7 @@
 				  -------------------------->
 				<form>
 				<h2 class="heading">Rollergun Setup</h2>
+				<p>Use this form if calculating the <strong class="has-text-link">band length</strong> and <strong class="has-text-link">power</strong> of a rollergun setup. Calculates for both regular rollerheads and invert roller heads. Refer to the relevant output box below.</p>
 					<!-- ROLLER  BARREL LENGTH -->
 					<div class="field is-horizontal">
 					  <div class="field-label ">
@@ -426,7 +433,7 @@
 					  </div>
 					</div>
 					<!-- ROLLER BAND CALCULATIONS -->
-					<fieldset disabled class="has-background-link has-text-light box">
+					<fieldset disabled class="has-background-info has-text-light box">
 						<h2>Results</h2>
 						<!-- ROLLER BAND STRETCH % -->
 						<div class="field is-horizontal">
@@ -469,6 +476,8 @@
 							</div>
 						  </div>
 						</div>
+					</fieldset>
+					<fieldset disabled class="has-background-link has-text-light box">
 						<!-- ELASTIC MODULUS --
 						<div class="field is-horizontal">
 						  <div class="field-label ">
@@ -489,7 +498,7 @@
 							</div>
 						  </div>
 						</div> -->
-						<h2>Rollergun bands</h2>
+						<h2>Rollergun band result</h2>
 						<!-- ROLLER BAND LENGTH -->
 						<div class="field is-horizontal">
 						  <div class="field-label ">
@@ -532,15 +541,16 @@
 							</div>
 						  </div>
 						</div>
-						
 					<!-- END BAND CALCULATIONS -->
 					<div class="notification is-danger">
 						<p><b class="">Force: </b><span id="RResult"></span> kg</p>
 					</div>
+					</fieldset>
+					<fieldset disabled class="has-background-link has-text-light box">
 					<!--------------------------
 					  --- INVERT ROLLERGUN CALCS
 					  -------------------------->
-						<h2>Invert Rollergun bands</h2>
+						<h2>Invert Rollergun band result</h2>
 						<!-- ROLLER BAND LENGTH -->
 						<div class="field is-horizontal">
 						  <div class="field-label ">
@@ -650,20 +660,17 @@ function calculate() {
   var RBandBore = document.getElementById("RBandBore").value;
   
   // Band Calculations
-  var RBandHalfLength = Number(RBarrelLength/2);
   var RBandStretchPercent = Number((RBandStretch-1)*100);
   var RBandPretensionPercent = Number((RBandPretension-1)*100);
   var RBandModulus = (0.45*RBandStretchPercent) + 75;
   var RBandPretensionModulus = (0.45*RBandPretensionPercent) + 75;
   
   
-  // Roller Pretension
-  if ( RBandPretension = 1){
-		var RBandLength = RBarrelLength;
-  }
-  else {
-		var RBandLength = Number(RBarrelLength/(RBandStretch-RBandPretension));
-  }
+
+		var RBandLength = 2*Number(RBarrelLength/(RBandStretch-RBandPretension)*RBandPretension/RBandStretch);
+		  document.getElementById("RBandPretensionPercent").value = RBandPretensionPercent;
+		var RBandHalfLength = Number(RBandLength/2);
+
   
   
   // STANDARD ROLLER - Calculations
@@ -681,7 +688,6 @@ function calculate() {
   
   // ROLLER RESULTS
   document.getElementById("RBandStretchPercent").value = RBandStretchPercent;
-  document.getElementById("RBandPretensionPercent").value = RBandPretensionPercent;
 
   // ROLLER SETUP
   document.getElementById("RBandHalfLength").value = RBandHalfLength;
